@@ -1,4 +1,7 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
+import 'package:searchbar_filter/orderAndFilter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -123,6 +126,15 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
             ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const FilteredLessonListApp()),
+                  );
+                },
+                child: const Text("Order And Filter Page"))
           ],
         ),
       ),
@@ -130,141 +142,140 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
+// // import 'package:flutter/material.dart';
 
-// import 'package:flutter/material.dart';
+// // void main() {
+// //   runApp(const MyApp());
+// // }
 
-// void main() {
-//   runApp(const MyApp());
-// }
+// // class MyApp extends StatelessWidget {
+// //   const MyApp({super.key});
 
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
+// //   // This widget is the root of your application.
+// //   @override
+// //   Widget build(BuildContext context) {
+// //     return MaterialApp(
+// //       title: 'Flutter Demo',
+// //       theme: ThemeData(
+// //         // This is the theme of your application.
+// //         //
+// //         // TRY THIS: Try running your application with "flutter run". You'll see
+// //         // the application has a blue toolbar. Then, without quitting the app,
+// //         // try changing the seedColor in the colorScheme below to Colors.green
+// //         // and then invoke "hot reload" (save your changes or press the "hot
+// //         // reload" button in a Flutter-supported IDE, or press "r" if you used
+// //         // the command line to start the app).
+// //         //
+// //         // Notice that the counter didn't reset back to zero; the application
+// //         // state is not lost during the reload. To reset the state, use hot
+// //         // restart instead.
+// //         //
+// //         // This works for code too, not just values: Most code changes can be
+// //         // tested with just a hot reload.
+// //         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+// //         useMaterial3: true,
+// //       ),
+// //       home: const MyListPage(),
+// //     );
+// //   }
+// // }
 
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Flutter Demo',
-//       theme: ThemeData(
-//         // This is the theme of your application.
-//         //
-//         // TRY THIS: Try running your application with "flutter run". You'll see
-//         // the application has a blue toolbar. Then, without quitting the app,
-//         // try changing the seedColor in the colorScheme below to Colors.green
-//         // and then invoke "hot reload" (save your changes or press the "hot
-//         // reload" button in a Flutter-supported IDE, or press "r" if you used
-//         // the command line to start the app).
-//         //
-//         // Notice that the counter didn't reset back to zero; the application
-//         // state is not lost during the reload. To reset the state, use hot
-//         // restart instead.
-//         //
-//         // This works for code too, not just values: Most code changes can be
-//         // tested with just a hot reload.
-//         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-//         useMaterial3: true,
-//       ),
-//       home: const MyListPage(),
-//     );
-//   }
-// }
+// // class MyListPage extends StatefulWidget {
+// //   const MyListPage({Key? key}) : super(key: key);
 
-// class MyListPage extends StatefulWidget {
-//   const MyListPage({Key? key}) : super(key: key);
+// //   @override
+// //   _MyListPageState createState() => _MyListPageState();
+// // }
 
-//   @override
-//   _MyListPageState createState() => _MyListPageState();
-// }
+// // class _MyListPageState extends State<MyListPage> {
+// //   final List<Map<String, dynamic>> _myItems = [
+// //     //Elemanların olduğu listemiz
+// //     {"id": 1, "name": "Item 1"},
+// //     {"id": 2, "name": "Item 2"},
+// //     {"id": 3, "name": "Item 3"},
+// //     {"id": 4, "name": "Item 4"},
+// //     {"id": 5, "name": "Item 5"},
+// //     {"id": 6, "name": "Item 6"},
+// //     {"id": 7, "name": "Item 7"},
+// //     {"id": 8, "name": "Item 8"},
+// //     {"id": 9, "name": "Item 9"},
+// //     {"id": 10, "name": "Item 10"},
+// //   ];
 
-// class _MyListPageState extends State<MyListPage> {
-//   final List<Map<String, dynamic>> _myItems = [
-//     //Elemanların olduğu listemiz
-//     {"id": 1, "name": "Item 1"},
-//     {"id": 2, "name": "Item 2"},
-//     {"id": 3, "name": "Item 3"},
-//     {"id": 4, "name": "Item 4"},
-//     {"id": 5, "name": "Item 5"},
-//     {"id": 6, "name": "Item 6"},
-//     {"id": 7, "name": "Item 7"},
-//     {"id": 8, "name": "Item 8"},
-//     {"id": 9, "name": "Item 9"},
-//     {"id": 10, "name": "Item 10"},
-//   ];
+// //   List<Map<String, dynamic>> _filteredItems =
+// //       []; //search edilen liste elemanınının altarıldığı liste
 
-//   List<Map<String, dynamic>> _filteredItems =
-//       []; //search edilen liste elemanınının altarıldığı liste
+// //   @override
+// //   void initState() {
+// //     _filteredItems =
+// //         _myItems; //uygulamayı açar açmaz tüm liste elemanlarımız boş listeye geçeer
+// //     super.initState();
+// //   }
 
-//   @override
-//   void initState() {
-//     _filteredItems =
-//         _myItems; //uygulamayı açar açmaz tüm liste elemanlarımız boş listeye geçeer
-//     super.initState();
-//   }
+// //   bool visible = true;
 
-//   bool visible = true;
+// //   void _runFilter(String enteredKeyword) {
+// //     List<Map<String, dynamic>> results = [];
+// //     if (enteredKeyword.isEmpty) {
+// //       // Eğer giriş metni boşsa, tüm öğeleri göstermek için orijinal liste kullanılır.
+// //     } else {
+// //       // Giriş metnine göre filtreleme yapılır ve eşleşen öğeler yeni bir listeye eklenir.
+// //       results = _myItems
+// //           .where((item) =>
+// //               item["name"].toLowerCase().contains(enteredKeyword.toLowerCase()))
+// //           .toList();
+// //     }
+// //     setState(() {
+// //       visible = false;
+// //       // Sonuçları güncellemek için state yeniden oluşturulur.
+// //       _filteredItems = results;
+// //     });
+// //   }
 
-//   void _runFilter(String enteredKeyword) {
-//     List<Map<String, dynamic>> results = [];
-//     if (enteredKeyword.isEmpty) {
-//       // Eğer giriş metni boşsa, tüm öğeleri göstermek için orijinal liste kullanılır.
-//     } else {
-//       // Giriş metnine göre filtreleme yapılır ve eşleşen öğeler yeni bir listeye eklenir.
-//       results = _myItems
-//           .where((item) =>
-//               item["name"].toLowerCase().contains(enteredKeyword.toLowerCase()))
-//           .toList();
-//     }
-//     setState(() {
-//       visible = false;
-//       // Sonuçları güncellemek için state yeniden oluşturulur.
-//       _filteredItems = results;
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('My List Page'),
-//       ),
-//       body: Padding(
-//         padding: const EdgeInsets.all(10),
-//         child: Column(
-//           children: [
-//             const SizedBox(height: 20),
-//             TextField(
-//               onChanged: (value) => _runFilter(value),
-//               decoration: const InputDecoration(
-//                 labelText: 'Search',
-//                 suffixIcon: Icon(Icons.search),
-//               ),
-//             ),
-//             const SizedBox(height: 20),
-//             Visibility(
-//                 visible: visible,
-//                 child: Container(height: 50, color: Colors.blue)),
-//             Expanded(
-//               child: _filteredItems.isNotEmpty
-//                   ? ListView.builder(
-//                       itemCount: _filteredItems.length,
-//                       itemBuilder: (context, index) => Card(
-//                         key: ValueKey(_filteredItems[index]["id"]),
-//                         color: Colors.yellowAccent,
-//                         elevation: 4,
-//                         margin: const EdgeInsets.symmetric(vertical: 10),
-//                         child: ListTile(
-//                           title: Text(_filteredItems[index]['name']),
-//                         ),
-//                       ),
-//                     )
-//                   : const Text(
-//                       'No results found',
-//                       style: TextStyle(fontSize: 24),
-//                     ),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+// //   @override
+// //   Widget build(BuildContext context) {
+// //     return Scaffold(
+// //       appBar: AppBar(
+// //         title: const Text('My List Page'),
+// //       ),
+// //       body: Padding(
+// //         padding: const EdgeInsets.all(10),
+// //         child: Column(
+// //           children: [
+// //             const SizedBox(height: 20),
+// //             TextField(
+// //               onChanged: (value) => _runFilter(value),
+// //               decoration: const InputDecoration(
+// //                 labelText: 'Search',
+// //                 suffixIcon: Icon(Icons.search),
+// //               ),
+// //             ),
+// //             const SizedBox(height: 20),
+// //             Visibility(
+// //                 visible: visible,
+// //                 child: Container(height: 50, color: Colors.blue)),
+// //             Expanded(
+// //               child: _filteredItems.isNotEmpty
+// //                   ? ListView.builder(
+// //                       itemCount: _filteredItems.length,
+// //                       itemBuilder: (context, index) => Card(
+// //                         key: ValueKey(_filteredItems[index]["id"]),
+// //                         color: Colors.yellowAccent,
+// //                         elevation: 4,
+// //                         margin: const EdgeInsets.symmetric(vertical: 10),
+// //                         child: ListTile(
+// //                           title: Text(_filteredItems[index]['name']),
+// //                         ),
+// //                       ),
+// //                     )
+// //                   : const Text(
+// //                       'No results found',
+// //                       style: TextStyle(fontSize: 24),
+// //                     ),
+// //             ),
+// //           ],
+// //         ),
+// //       ),
+// //     );
+// //   }
+// // }
